@@ -1,6 +1,5 @@
 package com.example.myapplicationui.screen
 
-import Movie
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -11,6 +10,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import com.example.myapplicationui.Movie
 
 @Composable
 fun MoviesScreen(onClick : (Movie) -> Unit) {
@@ -27,17 +27,13 @@ fun MoviesScreen(onClick : (Movie) -> Unit) {
 @Composable
 fun MoviesScreenContent(
     modifier: Modifier, onClick: (Movie) -> Unit, ) {
-    val movie = Movie(id = 1, title = "Inception", description = "A mind-bending thriller")
+    val movie = Movie(title = "Inception", description = "A mind-bending thriller")
 
-    Column(
-        modifier = modifier.fillMaxSize(),
-        verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        Button(
-            onClick = { onClick(movie) }
-        ) {
-            Text(text = "Ir al detalle")
+    Button(
+        onClick = {
+            onClick(movie)
         }
+    ) {
+        Text(text = "Ir al detalle")
     }
 }

@@ -1,6 +1,6 @@
 package com.example.myapplicationui.screen
 
-import Movie
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
@@ -12,10 +12,11 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.material3.Icon
+import com.example.myapplicationui.Movie
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun MovieDetailScreen(movie: Movie, onBackPressed: () -> Unit) {
+fun MovieDetailScreen(onBackPressed: () -> Unit, movie: Movie) {
     Scaffold(
         topBar = {
             TopAppBar(
@@ -36,7 +37,8 @@ fun MovieDetailScreen(movie: Movie, onBackPressed: () -> Unit) {
             )
         },
         content = {
-                paddingValues -> MovieDetailScreenContent( modifier = Modifier.padding(paddingValues), movie = movie)
+                paddingValues -> MovieDetailScreenContent( modifier = Modifier.padding(paddingValues),
+            movie = movie)
         }
     )
 }
@@ -44,10 +46,13 @@ fun MovieDetailScreen(movie: Movie, onBackPressed: () -> Unit) {
 
 @Composable
 fun MovieDetailScreenContent(modifier: Modifier, movie: Movie) {
-    Text(text = """
-            ID: ${movie.id}
-            Title: ${movie.title}
-            Description: ${movie.description}
-        """.trimIndent(),
-        modifier = modifier)
+    Column(
+        modifier = modifier
+    ) {
+        Text(text = movie.title)
+        Text(text = movie.description)
+    }
 }
+
+
+
